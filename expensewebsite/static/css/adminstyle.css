@@ -1,30 +1,66 @@
+/* General Header Styling */
 #header {
-  background: rgb(0, 62, 69);
+  background: linear-gradient(135deg, rgb(0, 62, 69), rgb(0, 102, 109));
   color: #ffffff;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Branding Title */
 #branding h1 {
   color: #ffffff;
+  margin: 0;
+  font-size: 1.8rem;
 }
 
+/* Breadcrumbs */
 div.breadcrumbs {
   background: rgb(61, 88, 106);
   color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
+/* Login Submit Button */
 .login .submit-row {
   padding: 0px !important;
 }
 
+/* Buttons */
 input[type="submit"],
 input[type="button"],
 .submit-row input {
   width: 100%;
   background: rgb(0, 62, 69);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.submit-row input:hover {
+  background: rgb(0, 102, 109);
+}
+
+/* Module Headings */
 .module h2,
 .module caption,
 .inline-group h2 {
   background: rgb(0, 62, 69);
+  color: white;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
 }

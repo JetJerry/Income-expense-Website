@@ -7,6 +7,7 @@ const getRandomType = () => {
     "line",
     "radar",
     "doughnut",
+    
     "polarArea",
   ];
   return types[Math.floor(Math.random() * types.length)];

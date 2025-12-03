@@ -1,65 +1,56 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
 <div class="container mt-4">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="{% url 'expenses'%}">Expenses</a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
-    </ol>
-  </nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-2 rounded">
+            <li class="breadcrumb-item">
+                <a href="{% url 'expenses' %}" class="text-dark">Expenses</a>
+            </li>
+            <li class="breadcrumb-item active text-primary" aria-current="page">Add Expenses</li>
+        </ol>
+    </nav>
 
-  <div class="card">
-    <div class="card-body">
-      <form action="{% url 'add-expenses' %}" method="post">
-        {% include 'partials/_messages.html'%} {% csrf_token %}
-        <div class="form-group">
-          <label for="">Amount</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            name="amount"
-            value="{{values.amount}}"
-          />
+    <div class="card border-0 shadow-sm rounded">
+        <div class="card-header bg-primary text-white text-center">
+            <h5 class="mb-0">Add a New Expense</h5>
         </div>
-        <div class="form-group">
-          <label for="">Description</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            name="description"
-            value="{{values.description}}"
-          />
+        <div class="card-body">
+            <form action="{% url 'add-expenses' %}" method="post">
+                {% include 'partials/_messages.html' %}
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="amount" class="form-label fw-semibold">Amount</label>
+                    <input type="text" class="form-control" name="amount" value="{{ values.amount }}" placeholder="Enter amount" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label fw-semibold">Description</label>
+                    <input type="text" class="form-control" name="description" value="{{ values.description }}" placeholder="Enter description" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="category" class="form-label fw-semibold">Category</label>
+                    <select class="form-select" name="category" required>
+                        <option selected disabled>Choose a category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="expense_date" class="form-label fw-semibold">Date of Expense</label>
+                    <input type="date" class="form-control" name="expense_date" required>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="">Category</label>
-          <select class="form-control" name="category">
-            {% for category in categories%}
-            <option name="category" value="{{category.name}}"
-              >{{category.name}}</option
-            >
-
-            {% endfor %}
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="">Date of Expense</label>
-          <input
-            type="date"
-            class="form-control form-control-sm"
-            name="expense_date"
-          />
-        </div>
-
-        <input
-          type="submit"
-          value="Submit"
-          class="btn btn-primary btn-primary-sm"
-        />
-      </form>
     </div>
-  </div>
 </div>
 
 {% endblock %}

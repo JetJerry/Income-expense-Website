@@ -5,6 +5,12 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.bd-placeholder-img:hover {
+  opacity: 1;
 }
 
 @media (min-width: 768px) {
@@ -15,9 +21,11 @@
 
 .showPasswordToggle {
   cursor: pointer;
-  transition: all;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 0.8;
 }
 
 .showPasswordToggle:hover {
   transform: scale(1.2);
+  opacity: 1;
 }

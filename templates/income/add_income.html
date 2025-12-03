@@ -1,61 +1,72 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <div class="container mt-4">
   <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb bg-light p-2 shadow-sm rounded">
       <li class="breadcrumb-item">
-        <a href="{% url 'income'%}">Income</a>
+        <a href="{% url 'income' %}" class="text-decoration-none">Income</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">Add Income</li>
     </ol>
   </nav>
 
-  <div class="card">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Add Income</h5>
+    </div>
     <div class="card-body">
       <form action="{% url 'add-income' %}" method="post">
-        {% include 'partials/_messages.html'%} {% csrf_token %}
+        {% include 'partials/_messages.html' %}
+        {% csrf_token %}
+
         <div class="form-group">
-          <label for="">Amount</label>
+          <label for="amount">Amount</label>
           <input
             type="text"
-            class="form-control form-control-sm"
+            class="form-control"
             name="amount"
-            value="{{values.amount}}"
-          />
-        </div>
-        <div class="form-group">
-          <label for="">Description</label>
-          <input
-            type="text"
-            class="form-control form-control-sm"
-            name="description"
-            value="{{values.description}}"
-          />
-        </div>
-        <div class="form-group">
-          <label for="">Sources</label>
-          <select class="form-control" name="source">
-            {% for source in sources%}
-            <option name="source" value="{{source.name}}"
-              >{{source.name}}</option
-            >
-            {% endfor %}
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="">Date of Income</label>
-          <input
-            type="date"
-            class="form-control form-control-sm"
-            name="income_date"
+            value="{{ values.amount }}"
+            placeholder="Enter amount"
+            required
           />
         </div>
 
-        <input
-          type="submit"
-          value="Submit"
-          class="btn btn-primary btn-primary-sm"
-        />
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            value="{{ values.description }}"
+            placeholder="Enter description"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="source">Source</label>
+          <select class="form-control" name="source" required>
+            <option value="" disabled selected>Select a source</option>
+            {% for source in sources %}
+            <option value="{{ source.name }}">{{ source.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="income_date">Date of Income</label>
+          <input
+            type="date"
+            class="form-control"
+            name="income_date"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 mt-3">
+          Submit Income
+        </button>
       </form>
     </div>
   </div>
